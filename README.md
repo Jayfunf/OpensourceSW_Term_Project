@@ -8,5 +8,11 @@ modify: paperDet.py
 add: utlis.py
 add: testIMG1, testIMG2, testIMG3, testIMG4, testIMG5,testIMG6
 
+modify : README.md
+add : edgedet.py, sckit.py
+add : pot.jpg
+delete : mediapipe.py
+
+
 reference:
 https://github.com/murtazahassan/Document-Scanner
