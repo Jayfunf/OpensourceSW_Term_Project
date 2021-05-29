@@ -41,7 +41,7 @@ def stackImages(imgArray,scale,lables=[]):
 def reorder(myPoints):
 
     myPoints = myPoints.reshape((4, 2))
-    myPointsNew = np.zeros((4, 1, 2), dtype=np.int32)
+    myPointsNew = np.zeros((4, 1, 2), dtype=np.int32) #allocating memory for the four ordered points...
     add = myPoints.sum(1)
 
     myPointsNew[0] = myPoints[np.argmin(add)]
@@ -66,7 +66,7 @@ def biggestContour(contours):
                 max_area = area
     return biggest,max_area
 def drawRectangle(img,biggest,thickness):
-    cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
+    #cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
     cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness)
     cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness)
     cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
