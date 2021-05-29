@@ -16,3 +16,9 @@ delete : mediapipe.py
 
 reference:
 https://github.com/murtazahassan/Document-Scanner
+
+
+필요패키지
+```
+pip install matplotlib 
+```
