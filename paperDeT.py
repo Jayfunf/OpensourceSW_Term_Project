@@ -79,3 +79,4 @@ while (1):
         cv2.imshow('Result', stackedImage)
         cv2.waitKey(300)
         count += 1
+    break
