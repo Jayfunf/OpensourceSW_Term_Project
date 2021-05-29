@@ -4,8 +4,7 @@ import utlis
 
 
 ########################################################################
-webCamFeed = True
-pathImage = 'testIMG4.jpeg'
+pathImage = 'testIMG6.jpeg'
 heightImg = 640
 widthImg  = 480
 ########################################################################
