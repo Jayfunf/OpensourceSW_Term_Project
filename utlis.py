@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 
-## TO STACK ALL THE IMAGES IN ONE WINDOW
 def stackImages(imgArray,scale,lables=[]):
     rows = len(imgArray)
     cols = len(imgArray[0])
@@ -41,7 +40,7 @@ def stackImages(imgArray,scale,lables=[]):
 def reorder(myPoints):
 
     myPoints = myPoints.reshape((4, 2))
-    myPointsNew = np.zeros((4, 1, 2), dtype=np.int32) #allocating memory for the four ordered points...
+    myPointsNew = np.zeros((4, 1, 2), dtype=np.int32)
     add = myPoints.sum(1)
 
     myPointsNew[0] = myPoints[np.argmin(add)]
@@ -66,11 +65,11 @@ def biggestContour(contours):
                 max_area = area
     return biggest,max_area
 def drawRectangle(img,biggest,thickness):
-    #cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
-    cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness)
-    cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness)
-    cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness)
-
+    cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness) #위쪽
+    cv2.line(img, (biggest[0][0][0], biggest[0][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness) #왼쪽
+    cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[2][0][0], biggest[2][0][1]), (0, 255, 0), thickness) #아래쪽
+    cv2.line(img, (biggest[3][0][0], biggest[3][0][1]), (biggest[1][0][0], biggest[1][0][1]), (0, 255, 0), thickness) #오른쪽
+    print(biggest) #biggest 데이터 추출 가능성 확보
     return img
 
 def nothing(x):

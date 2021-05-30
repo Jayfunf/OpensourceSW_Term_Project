@@ -2,11 +2,9 @@ import cv2
 import numpy as np
 import utlis
 
-########################################################################
 pathImage = 'testIMG6.jpeg'
 heightImg = 640
 widthImg  = 480
-########################################################################
 
 utlis.initializeTrackbars()
 count=0
