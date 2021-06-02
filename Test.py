@@ -72,6 +72,21 @@ corner = cv2.cornerHarris(imgray, 2, 3, 0.04)
 coord = np.where(corner > 0.5* corner.max())
 coord = np.stack((coord[1], coord[0]), axis=-1)
 print(coord)
+
+"""
+#코너 값 비슷하면 삭제
+i = 1
+for x, y in coord:
+    if coord[i].x == coord[i-1].y:
+        #delete
+"""
+#print(coord[1])
+#모서리 길이 계산
+VerticalLength = coord[1][1]-coord[0][1]
+HorizontalLength = coord[2][0]-coord[1][0]
+print(VerticalLength)
+print(HorizontalLength)
+
 # 코너 좌표에 동그리미 그리기 ---③
 for x, y in coord:
     cv2.circle(imgray, (x,y), 5, (0,0,255), 1, cv2.LINE_AA)
@@ -81,5 +96,5 @@ cv2.imshow('final', imgray)
 contour2, y = cv2.findContours(thr, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
 final4 = cv2.drawContours(img, contour2, -1, (0, 255, 0), 3)
 #cv2.imshow('final2', final)
-cv2.imshow('final4', final4)
+#cv2.imshow('final4', final4)
 cv2.waitKey(0)
