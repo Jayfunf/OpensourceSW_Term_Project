@@ -35,6 +35,8 @@ img = cv2.imread('testIm.jpg')
 img_tmp = cv2.imread('none.jpg')
 img = cv2.resize(img, dsize=(1500, 900), interpolation=cv2.INTER_AREA)
 img = cv2.resize(img, dsize=(0, 0), fx=0.3, fy=0.7, interpolation=cv2.INTER_LINEAR)
+img_tmp = cv2.resize(img_tmp, dsize=(1500, 900), interpolation=cv2.INTER_AREA)
+img_tmp = cv2.resize(img_tmp, dsize=(0, 0), fx=0.3, fy=0.7, interpolation=cv2.INTER_LINEAR)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 ret, th = cv2.threshold(gray, 127, 255, 0)
 #blur = cv2.GaussianBlur(img, (5,5), 0)
@@ -58,13 +60,26 @@ approx = cv2.approxPolyDP(big_contour,200,True)
 #print(hierarchy)
 
 #final = cv2.drawContours(img, big_contour, -1, (0, 255, 0), 3)
-final2 = cv2.drawContours(img, [approx], -1, (0, 255, 0), 3)
-final4 = cv2.drawContours(img_tmp, [approx], -1, (0, 255, 0), 3)
+#final = cv2.drawContours(img, [approx], -1, (0, 255, 0), 3)
+contour_img = cv2.drawContours(img_tmp, [approx], -1, (0, 255, 0), 3)
 imgray = cv2.cvtColor(img_tmp,cv2.COLOR_BGR2GRAY)
 ret,thr = cv2.threshold(imgray,127,255,0)
+
+
+# 해리스 코너 검출 ---①
+corner = cv2.cornerHarris(imgray, 2, 3, 0.04)
+# 변화량 결과의 최대값 10% 이상의 좌표 구하기 ---②
+coord = np.where(corner > 0.5* corner.max())
+coord = np.stack((coord[1], coord[0]), axis=-1)
+print(coord)
+# 코너 좌표에 동그리미 그리기 ---③
+for x, y in coord:
+    cv2.circle(imgray, (x,y), 5, (0,0,255), 1, cv2.LINE_AA)
+
+
 cv2.imshow('final', imgray)
 contour2, y = cv2.findContours(thr, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
 final4 = cv2.drawContours(img, contour2, -1, (0, 255, 0), 3)
-cv2.imshow('final2', final2)
+#cv2.imshow('final2', final)
 cv2.imshow('final4', final4)
 cv2.waitKey(0)
