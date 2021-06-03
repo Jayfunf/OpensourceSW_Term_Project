@@ -2,13 +2,9 @@ import cv2
 import numpy as np
 import utlis
 
-
-########################################################################
-webCamFeed = True
-pathImage = 'testIMG4.jpeg'
+pathImage = 'testIMG6.jpeg'
 heightImg = 640
 widthImg  = 480
-########################################################################
 
 utlis.initializeTrackbars()
 count=0
@@ -32,7 +28,6 @@ while (1):
     contours, hierarchy = cv2.findContours(imgThreshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE) # FIND ALL CONTOURS
     cv2.drawContours(imgContours, contours, -1, (0, 255, 0), 10) # DRAW ALL DETECTED CONTOURS
 
-
     # FIND THE BIGGEST COUNTOUR
     biggest, maxArea = utlis.biggestContour(contours) # FIND THE BIGGEST CONTOUR
     if biggest.size != 0:
@@ -50,9 +45,9 @@ while (1):
 
         # APPLY ADAPTIVE THRESHOLD
         imgWarpGray = cv2.cvtColor(imgWarpColored,cv2.COLOR_BGR2GRAY)
-        imgAdaptiveThre= cv2.adaptiveThreshold(imgWarpGray, 255, 1, 1, 7, 2)
+        imgAdaptiveThre = cv2.adaptiveThreshold(imgWarpGray, 255, 1, 1, 7, 2)
         imgAdaptiveThre = cv2.bitwise_not(imgAdaptiveThre)
-        imgAdaptiveThre=cv2.medianBlur(imgAdaptiveThre,3)
+        imgAdaptiveThre = cv2.medianBlur(imgAdaptiveThre,3)
 
         # Image Array for Display
         imageArray = ([img,imgGray,imgThreshold,imgContours],
@@ -79,4 +74,3 @@ while (1):
         cv2.imshow('Result', stackedImage)
         cv2.waitKey(300)
         count += 1
-    break
