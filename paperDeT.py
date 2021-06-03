@@ -73,4 +73,4 @@ while (1):
                     cv2.FONT_HERSHEY_DUPLEX, 3, (0, 0, 255), 5, cv2.LINE_AA)
         cv2.imshow('Result', stackedImage)
         cv2.waitKey(300)
-        count += 1
+        count += 1 #git
