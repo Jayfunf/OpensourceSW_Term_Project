@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import utlis
 
-pathImage = 'testIMG6.jpeg'
+pathImage = 'TI1.jpg'
 heightImg = 640
 widthImg  = 480
 
