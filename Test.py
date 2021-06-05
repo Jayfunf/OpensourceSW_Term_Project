@@ -31,7 +31,7 @@ cv2.destroyAllWindows()
 import numpy as np
 import cv2
 #from matplotlib import pyplot as plt
-img = cv2.imread('testImage4.jpg')
+img = cv2.imread('TI1.jpg')
 img_tmp = cv2.imread('none.jpg')
 img = cv2.resize(img, dsize=(1500, 900), interpolation=cv2.INTER_AREA)
 img = cv2.resize(img, dsize=(0, 0), fx=0.3, fy=0.7, interpolation=cv2.INTER_LINEAR)
@@ -52,7 +52,7 @@ for i in cnt:
         max = area
         big_contour = i
 
-approx = cv2.approxPolyDP(big_contour,50,True)
+approx = cv2.approxPolyDP(big_contour,100,True)
 #final3 = cv2.drawContours(img_tmp, [approx], -1, (0, 255, 0), 3)
 #im2, contour2, hierarchy = cv2.findContours(final3, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 #print(im2)
